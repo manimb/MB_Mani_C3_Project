@@ -63,9 +63,20 @@ class RestaurantTest {
         Mockito.when(spyRestaurant.getCurrentTime()).thenReturn(LocalTime.parse("23:30:00"));
         assertFalse(spyRestaurant.isRestaurantOpen());
         // spyRestaurant.isRestaurantOpen() returns false in this case
-        assertFalse(spyRestaurant.isRestaurantOpen());
         //WRITE UNIT TEST CASE HERE
 
+    }
+
+    @Test
+    public void cumulative_sum_of_menu_items_with_no_menu_items_should_give_0() {
+        List<String> listOfMenuItems = new ArrayList<String>();
+        assertEquals(0, restaurant.cumulativeSumOfMenuItems(listOfMenuItems));
+    }
+
+    @Test
+    public void cumulative_sum_of_menu_items_with_2_menu_items_with_rates_119_and_269_should_give_388() {
+        List<String> listOfMenuItems = Arrays.asList( "Sweet corn soup", "Vegetable lasagne");
+        assertEquals(388, restaurant.cumulativeSumOfMenuItems(listOfMenuItems));
     }
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
