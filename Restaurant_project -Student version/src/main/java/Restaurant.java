@@ -18,14 +18,24 @@ public class Restaurant {
     }
 
     public boolean isRestaurantOpen() {
-        return true;
+        // Checks if the user checking time falls in restaurant open times range
+        // and returns a boolean
+        if (getCurrentTime().isAfter(this.openingTime) && getCurrentTime().isBefore(this.closingTime))
+            return true;
+        else if (getCurrentTime().equals(this.openingTime))
+            return true;
+        else if (getCurrentTime().isBefore(this.openingTime) || getCurrentTime().isAfter(this.closingTime))
+            return false;
+        else // this will take care of the condition  (getCurrentTime().equals(this.closingTime))
+            return false;
         //DELETE ABOVE STATEMENT AND WRITE CODE HERE
     }
 
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
-        return null;
+        // Returns the list of items
+        return menu;
         //DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
     }
 

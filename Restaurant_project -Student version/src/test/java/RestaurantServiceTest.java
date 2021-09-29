@@ -9,24 +9,41 @@ class RestaurantServiceTest {
 
     RestaurantService service = new RestaurantService();
     Restaurant restaurant;
-    //REFACTOR ALL THE REPEATED LINES OF CODE
 
+    //REFACTOR ALL THE REPEATED LINES OF CODE
+    // This Code will be run before each of the unit test case
+    @BeforeEach
+    public void restaurantInitialize() {
+        // Initialize the various properties of the restaurant
+        LocalTime openingTime = LocalTime.parse("10:30:00");
+        LocalTime closingTime = LocalTime.parse("22:00:00");
+        restaurant = service.addRestaurant("Amelie's cafe","Chennai", openingTime, closingTime);
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+        //System.out.println("test");
+    }
 
     //>>>>>>>>>>>>>>>>>>>>>>SEARCHING<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    // Test if findRestaurantByName() returns the expected restaurant object.
     @Test
     public void searching_for_existing_restaurant_should_return_expected_restaurant_object() throws restaurantNotFoundException {
+        Restaurant restaurantObject = service.findRestaurantByName("Amelie's cafe");
+
+        // Converts restaurant name to lower case and performs assertEquals
+        assertEquals(restaurant.getName().toLowerCase(), restaurantObject.getName().toLowerCase());
         //WRITE UNIT TEST CASE HERE
     }
 
     //You may watch the video by Muthukumaran on how to write exceptions in Course 3: Testing and Version control: Optional content
+
+    // Test if findRestaurantByName() throws an exception when the restaurant cannot be found.
     @Test
     public void searching_for_non_existing_restaurant_should_throw_exception() throws restaurantNotFoundException {
+        assertThrows(restaurantNotFoundException.class, () -> service.findRestaurantByName("Invalid Restaurant Name"));
         //WRITE UNIT TEST CASE HERE
     }
     //<<<<<<<<<<<<<<<<<<<<SEARCHING>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-
 
     //>>>>>>>>>>>>>>>>>>>>>>ADMIN: ADDING & REMOVING RESTAURANTS<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test
