@@ -73,4 +73,13 @@ public class Restaurant {
         return name;
     }
 
+    // Calculate the cumulative sum of the value of all the menu items selected by the user
+    // Returns the cumulative order value, given the name of the items in a List format.
+    public int cumulativeSumOfMenuItems(List<String> listOfMenuItems) {
+        int cumulativeSum = 0;
+        for(String menuItemName : listOfMenuItems) {
+            cumulativeSum += findItemByName(menuItemName).getPrice();
+        }
+        return cumulativeSum;
+    }
 }

@@ -1,0 +1,22 @@
+Important Note:
+===============
+
+The base Restaurant finder stub code uses only the time information in all its processing.
+such as LocalTime, getCurrentTime also uses the LocalTime.now(). These does not carry the date information.
+
+For example the restaurant open times, close times in the restaurant class can hold only the time information.
+So this repository code assumes that the restaurant open and close times are in the same dates.
+
+=============================================================================================================
+
+However if the restaurant open and close times span in two different dates, 
+For example the restaurant opens in sept 27th, 10 PM and closes on Sept 28th 5 AM, that it if it overlaps two dates
+the test cases will fail as we have only the time information whereas we need the date information also.
+ 
+But there is no provision to hold date information for such an use case.
+
+So Optionally, i have modified the stub to hold both date and time information using 
+LocalDateTime at all places and run all the tests in another dseparate optional repository.
+
+This optional modified repository is at 
+https://github.com/manimb/Optional_Modified_Restaurant_Finder
